@@ -42,6 +42,29 @@
                             placeholder="Town, street or postcode"
                         >
                     </div>
+
+                    <div class="advanced__search-selects">
+                        <label for="radius-sales">Radius</label>
+                            
+                                <select
+                                    data-component="FormItem"
+                                    name="radius"
+                                    class="form-control"
+                                    id="radius-sales"
+                                >
+                                    <option value="">Choose radius</option>
+                                    <option value="1">1 Mile</option>
+                                    <option value="5">5 Miles</option>
+                                    <option value="10">10 Miles</option>
+                                    <option value="20">20 Miles</option>
+                                </select>
+                        
+                        </div>
+
+
+
+
+
                     <div class="advanced__search-selects">
                         <label for="instruction-type">Buying or Renting?</label>
                         <select
@@ -226,6 +249,26 @@
                                     placeholder="Town, street or postcode"
                                 >
                             </div>
+
+
+                            <div class="advanced__search-selects">
+                        <label for="radius-sales">Radius</label>
+                            
+                                <select
+                                    data-component="FormItem"
+                                    name="radius"
+                                    class="form-control"
+                                    id="radius-sales"
+                                >
+                                    <option value="">Choose radius</option>
+                                    <option value="1">1 Mile</option>
+                                    <option value="5">5 Miles</option>
+                                    <option value="10">10 Miles</option>
+                                    <option value="20">20 Miles</option>
+                                </select>
+                        
+                        </div>
+
                             <div class="advanced__search-selects">
                                 <label for="maxprice-sales">Max Price</label>
                                 <select
@@ -348,6 +391,25 @@
                                     placeholder="Town, street or postcode"
                                 >
                             </div>
+
+                            <div class="advanced__search-selects">
+                        <label for="radius-sales">Radius</label>
+                            
+                                <select
+                                    data-component="FormItem"
+                                    name="radius"
+                                    class="form-control"
+                                    id="radius-sales"
+                                >
+                                    <option value="">Choose radius</option>
+                                    <option value="1">1 Mile</option>
+                                    <option value="5">5 Miles</option>
+                                    <option value="10">10 Miles</option>
+                                    <option value="20">20 Miles</option>
+                                </select>
+                        
+                        </div>
+                        
                             <div class="advanced__search-selects">
                                 <label for="maxprice-lettings">Max Price</label>
                                 <select
