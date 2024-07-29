@@ -3,7 +3,12 @@
     // Variables used in book viewing href
     $office_id = $property['branch']['meta']['office_id'] ?? '';
     $advert_address = $property['Address']['display_address'] ?? '';
+    // Fetch the summary from the property array with a fallback to an empty string if not set
     $advert_summary = $property['summary'] ?? '';
+    // Strip HTML tags from the summary
+    $advert_summary = strip_tags($advert_summary);
+    // Truncate the summary to 100 characters, handling multibyte characters properly
+    $advert_summary = mb_substr($advert_summary, 0, 100, "UTF-8");
     $advert_image = $property['images'][0]['media_url'] ?? '';
     $advert_postcode = $property['Address']['postcode'] ?? '';
     $advert_url = $property['permalink'] ?? '';
@@ -18,14 +23,14 @@
                         <h1>{{ $property['bedrooms'] }} Bed {{ $property['property_type'] }} For @if ($property['instruction_type'] == 'Letting') Rent @else Sale @endif</h1> 
                     </div> 
                     <div class="property__address">
-                        {{ $property['Address']['display_address'] ?? '' }}
+                        {{ $property['Address']['display_address'] ?? '' }} 
                     </div>                                  
                     <div class="property-price-rooms-group">
                         <div class="property__price">
                             <span>{{ ($property['price_qualifier'] != 'Default') ? ($property['price_qualifier'] == 'POA' ? 'POA' : $property['price_qualifier']) : '' }}</span>
                             £{{ number_format($property['price']) }} {{ $property['instruction_type'] == 'Letting' ? ($property['rent_frequency'] == 'Weekly' ? 'PW' : 'PCM') : '' }}
-                        </div>                                            
-                    </div>                             
+                        </div>                                              
+                    </div>                              
                 </div> 
             </div>
             <div class="col-sm-12 col-lg-7">
@@ -47,7 +52,7 @@
                 <div class="propertySwiper__wrapper">
                     <div class="swiper mySwiper2">
                         <div class="swiper-wrapper">
-                            @if(is_array($property['images'] ?? false))
+                        @if(is_array($property['images'] ?? false))
                             @foreach ($property['images'] as $property_image)
                             <div class="swiper-slide">
                             @if ($property['availability'] != 'Available')
@@ -55,7 +60,7 @@
                                     <p>{{ $property['availability'] == 'SSTC' ? 'Sold STC' : $property['availability'] }}</p>
                                 </div>
                             @endif
-                                <img src="{{ $property_image['optimised_image_url'] ?? '' }}/1296" alt="{{ $property['Address']['display_address'] ?? '' }}">
+                                <img src="{{ $property_image['media_url'] ?? '' }}" alt="{{ $property['Address']['display_address'] ?? '' }}">
                             </div>            
                             @endforeach
                             @endif
@@ -80,13 +85,17 @@
                 <div class="thumbnailsSwiper__wrapper">
                     <div thumbsSlider="swiper" class="swiper mySwiper">
                         <div class="swiper-wrapper">
-                            @if(is_array($property['images'] ?? false))
+                          
+                        
+                        @if(is_array($property['images'] ?? false))
                                 @foreach ($property['images'] as $property_image)
                                 <div class="swiper-slide">
-                                    <img src="{{ $property_image['optimised_image_url'] ?? '' }}/251" alt="{{ $property['Address']['display_address'] ?? '' }}">
+                                    <img src="{{ $property_image['media_url'] ?? '' }}" alt="{{ $property['Address']['display_address'] ?? '' }}">
                                 </div>            
                                 @endforeach
                             @endif
+
+
                         </div>
                     </div>    
                     <div class="swiper-button-next" id="swiperThumbsNext">
@@ -110,19 +119,26 @@
                         Floorplan
                     </button>
                     @endif
+                   
+             
+                  
+                 
                     @if(!empty($property['epcs']))
-                        @foreach($property['epcs'] as $epc)
-                            @if($epc['media_type'] == 6)
-                                <!-- If media_type is 6, use a href -->
-                                <a href="{{ $epc['media_url'] }}" class="nav-link" rel="noopener noreferrer" target="_blank">EPC Document</a>
-                            @elseif($epc['media_type'] == 7)
-                                <!-- If media_type is 7, use the tab link -->
-                                <button class="nav-link" id="nav-epc-tab" data-bs-toggle="tab" data-bs-target="#nav-EPC" type="button" role="tab" aria-controls="nav-EPC" aria-selected="false">
-                                    EPC
-                                </button>
-                            @endif
-                        @endforeach
-                    @endif
+                    @foreach($property['epcs'] as $epc)
+                        @if($epc['media_type'] == 6)
+                            <!-- If media_type is 6, use a href -->
+                            <a href="{{ $epc['media_url'] }}" class="nav-link" rel="noopener noreferrer" target="_blank">EPC Document</a>
+                        @else
+                            <!-- If media_type is 7, use the tab link -->
+                            <button class="nav-link" id="nav-epc-tab" data-bs-toggle="tab" data-bs-target="#nav-EPC" type="button" role="tab" aria-controls="nav-EPC" aria-selected="false">
+                                EPC
+                            </button>
+                        @endif
+                    @endforeach
+                @endif
+
+
+
                     @if(is_array($property['virtual_tours'] ?? null) && count($property['virtual_tours']) > 0)
                         @foreach ($property['virtual_tours'] as $index => $property_virtualtour)
                         <a href="{{ $property_virtualtour['media_url'] ?? '' }}" rel="noopener noreferrer" target="_blank" class="nav-link">
@@ -175,17 +191,31 @@
                     @endforeach
                 </div>
                 @endif
-                @if(is_array($property['epcs'] ?? false))
+
+
+                @if(!empty($property['epc_doc_urls']) || !empty($property['epc_urls']))
                 <div class="tab-pane fade" id="nav-EPC" role="tabpanel" aria-labelledby="nav-epc-tab">
-                    @foreach ($property['epcs'] as $property_epc)
-                        @if($property_epc['media_type'] == 7)
-                            <img src="{{ $property_epc['media_url'] ?? '' }}" class="img-fluid" alt="EPC for {{ $property['Address']['display_address'] ?? '' }}">
-                        @else
-                            <a href="{{ $epc['media_url'] }}" rel="noopener noreferrer" target="_blank">View EPC Document</a>
-                        @endif
-                    @endforeach
+                  
+                
+                @if(!empty($property['epc_doc_urls']))
+                     
+                @foreach($property['epc_doc_urls'] as $epc_doc)
+                            <a href="{{ $epc_doc['media_url'] }}" rel="noopener noreferrer" target="_blank" title="View EPC Document for {{ $property['Address']['display_address'] ?? '' }}">View EPC Document</a>
+                        @endforeach
+
+
+
+                    @elseif(!empty($property['epc_urls']))
+                        @foreach($property['epc_urls'] as $epc_image)
+                            <img loading="lazy" src="{{ $epc_image['media_url'] }}" class="img-fluid" alt="EPC for {{ $property['Address']['display_address'] ?? '' }}">
+                        @endforeach
+                    @endif
                 </div>
                 @endif
+
+
+
+
                 @if(is_array($property['virtual_tours'] ?? false))
                 <div class="tab-pane fade" id="nav-Virtualtour" role="tabpanel" aria-labelledby="nav-Virtualtour-tab">
                     @foreach ($property['virtual_tours'] as $property_virtualtour)
@@ -198,14 +228,14 @@
         <div class="col-sm-12 col-lg-5">
             <div class="enquiry-box">
                 <h3>To discuss this property call our friendly team</h3>
-                <h2><a href="tel:02089520908" target="_blank" rel="noopener noreferrer">020 8952 0908</a></h2>
+                <h2><a href="tel:" target="_blank" rel="noopener noreferrer">01624 61 99 66</a></h2>
                 <a class="viewing-request-btn" href="/contact/arrange-viewing/?office_id={{ $office_id }}&advert_address={{ $advert_address }}&advert_summary={{ $advert_summary }}&advert_image={{ $advert_image }}&advert_postcode{{ $advert_postcode }}=&advert_url={{ $advert_url }}&type=@if($property['instruction_type'] == 'Sale') sale @elseif($property['instruction_type'] == 'Letting') let @endif">or <span>Book a viewing</span></a>
                 <div class="enquiry-box__cta">
                     @if(!empty($property['brochures']))
                     <div class="brochure">
                         @if(is_array($property['brochures'] ?? false))
                         @foreach ($property['brochures'] as $property_brochure)
-                        <a href="{{ $property_brochure['media_url'] ?? '' }}" class="brochure-download">
+                        <a href="{{ $property_brochure['media_url'] ?? '' }}" class="brochure-download" target="blank">
                             <svg enable-background="new 0 0 16 16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path id="login" d="M8,11.4l4.3-5.2H9.7v-6H6.3v6H3.7L8,11.4z M2,14V7.1H0.3V14c0,0.9,0.7,1.7,1.7,1.7c0,0,0,0,0,0H14c0.9,0,1.7-0.7,1.7-1.7c0,0,0,0,0,0V7.1H14V14L2,14z"></path></svg>
                             Download Brochure
                         </a>                    

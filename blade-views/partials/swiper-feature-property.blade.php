@@ -6,7 +6,7 @@
     <div>
     <div class="property__img" >
     @if ($hasImages)
-        <div class="img-permalink" style="background: url({{ $property['images'][0]['media_url'] ?? '' }}) bottom center no-repeat;"></div>
+        <div class="img-permalink" style="background: url('{{ $property['images'][0]['media_url'] ?? '' }}') bottom center no-repeat;"></div>
         @else
             <img src="" alt="Awaiting Images for {{ $property['Address']['display_address'] }}">
         @endif
@@ -23,7 +23,7 @@
                     </p>
                 </div>
                 <div class="property-grid__address">
-                    {{ $property['Address']['address_2'] ?? '' }}, {{ $property['Address']['town'] ?? '' }}
+                    {{ $property['Address']['address_1'] ?? '' }}, {{ $property['Address']['postcode'] ?? '' }}
                 </div>  
                    
                 <div class="property-grid__price">

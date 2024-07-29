@@ -19,7 +19,7 @@
                     <div class="parent">
                         <div class="div1"> 
                         <a href="{{ $property['permalink'] }}">
-                            <img intrinsicsize="557 x 375" src="{{ $property['images'][0]['optimised_image_url'] ?? '' }}/557" class="img-fluid property-list-img" alt="{{ $property['Address']['display_address'] ?? '' }}">
+                            <img intrinsicsize="557 x 375" src="{{ $property['images'][0]['media_url'] ?? '' }}" class="img-fluid property-list-img" alt="{{ $property['Address']['display_address'] ?? '' }}">
                         </a>
                         </div>
                     </div>
@@ -28,12 +28,12 @@
                     <div class="parent">
                         <div class="div1">
                         <a href="{{ $property['permalink'] }}"> 
-                            <img intrinsicsize="557 x 375" src="{{ $property['images'][0]['optimised_image_url'] ?? '' }}/557" class="img-fluid property-list-img" alt="{{ $property['Address']['display_address'] ?? '' }}">
+                            <img intrinsicsize="557 x 375" src="{{ $property['images'][0]['media_url'] ?? '' }}" class="img-fluid property-list-img" alt="{{ $property['Address']['display_address'] ?? '' }}">
                         </a>
                         </div>
                         <div class="div2">
                         <a href="{{ $property['permalink'] }}"> 
-                            <img intrinsicsize="274 x 183" src="{{ $property['images'][1]['optimised_image_url'] ?? '' }}/274" class="img-fluid property-list-img-small" alt="{{ $property['Address']['display_address'] ?? '' }}">
+                            <img intrinsicsize="274 x 183" src="{{ $property['images'][1]['media_url'] ?? '' }}" class="img-fluid property-list-img-small" alt="{{ $property['Address']['display_address'] ?? '' }}">
                         </a>
                         </div>
                     </div>
@@ -43,21 +43,22 @@
                     <div class="parent">
                         <div class="div1"> 
                             <a href="{{ $property['permalink'] }}">
-                                <img intrinsicsize="557 x 375" src="{{ $property['images'][0]['optimised_image_url'] ?? '' }}/557" class="img-fluid property-list-img" alt="{{ $property['Address']['display_address'] ?? '' }}">
+                                <img intrinsicsize="557 x 375" src="{{ $property['images'][0]['media_url'] ?? '' }}" class="img-fluid property-list-img" alt="{{ $property['Address']['display_address'] ?? '' }}">
                             </a>
                         </div>
                         <div class="div2"> 
                             <a href="{{ $property['permalink'] }}">
-                                <img intrinsicsize="274 x 183" src="{{ $property['images'][1]['optimised_image_url'] ?? '' }}/274" class="img-fluid property-list-img-small" alt="{{ $property['Address']['display_address'] ?? '' }}">
+                                <img intrinsicsize="274 x 183" src="{{ $property['images'][1]['media_url'] ?? '' }}" class="img-fluid property-list-img-small" alt="{{ $property['Address']['display_address'] ?? '' }}">
                             </a>
                             <a href="{{ $property['permalink'] }}">
-                                <img intrinsicsize="274 x 183" src="{{ $property['images'][2]['optimised_image_url'] ?? '' }}/274" class="img-fluid property-list-img-small" alt="{{ $property['Address']['display_address'] ?? '' }}">
+                                <img intrinsicsize="274 x 183" src="{{ $property['images'][2]['media_url'] ?? '' }}" class="img-fluid property-list-img-small" alt="{{ $property['Address']['display_address'] ?? '' }}">
                             </a>
                         </div>
                     </div>
                 @else
                 <img src="/wp-content/uploads/2022/06/Screenshot-2023-02-14-at-17.55.37.png" style="object-fit: contain;" alt="Awaiting Images for {{ $property['Address']['display_address'] }}">
                 @endif
+               
                 
                 <div class="features-banner">
                     <div class="feature-icon">

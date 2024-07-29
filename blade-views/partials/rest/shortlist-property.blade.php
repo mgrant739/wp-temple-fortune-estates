@@ -1,5 +1,5 @@
 @php
-    $hasImages = is_array($property['images'] ?? '') && count($property['images']) > 0;
+    $imageCount = is_array($property['images'] ?? null) ? count($property['images']) : 0;
 
     $property_sum = $property['summary'];
     $property_sum_stripped = strip_tags($property_sum);
@@ -10,19 +10,80 @@
     <div class="row">
         <div class="col-lg-7">
             <div class="list__grid-image-container">
-            @if ($hasImages)
-            <a href="{{ $property['permalink'] }}" class="parent">
-                <div class="div1"> 
-                    <img intrinsicsize="557 x 375" src="{{ $property['images'][0]['optimised_image_url'] ?? '' }}/557" class="img-fluid property-list-img" alt="{{ $property['Address']['display_address'] ?? '' }}">
+            @if ($imageCount == 1)
+                    {{-- HTML layout for one image --}}
+                    <div class="parent">
+                        <div class="div1"> 
+                        <a href="{{ $property['permalink'] }}">
+                            <img intrinsicsize="557 x 375" src="{{ $property['images'][0]['media_url'] ?? '' }}" class="img-fluid property-list-img" alt="{{ $property['Address']['display_address'] ?? '' }}">
+                        </a>
+                        </div>
+                    </div>
+                @elseif ($imageCount == 2)
+                    {{-- HTML layout for two images --}}
+                    <div class="parent">
+                        <div class="div1">
+                        <a href="{{ $property['permalink'] }}"> 
+                            <img intrinsicsize="557 x 375" src="{{ $property['images'][0]['media_url'] ?? '' }}" class="img-fluid property-list-img" alt="{{ $property['Address']['display_address'] ?? '' }}">
+                        </a>
+                        </div>
+                        <div class="div2">
+                        <a href="{{ $property['permalink'] }}"> 
+                            <img intrinsicsize="274 x 183" src="{{ $property['images'][1]['media_url'] ?? '' }}" class="img-fluid property-list-img-small" alt="{{ $property['Address']['display_address'] ?? '' }}">
+                        </a>
+                        </div>
+                    </div>
+                @elseif ($imageCount >= 3)
+                    {{-- HTML layout for three images (or more, but only display three) --}}
+                    {{-- Ensure that you only display the first three images --}}
+                    <div class="parent">
+                        <div class="div1"> 
+                            <a href="{{ $property['permalink'] }}">
+                                <img intrinsicsize="557 x 375" src="{{ $property['images'][0]['media_url'] ?? '' }}" class="img-fluid property-list-img" alt="{{ $property['Address']['display_address'] ?? '' }}">
+                            </a>
+                        </div>
+                        <div class="div2"> 
+                            <a href="{{ $property['permalink'] }}">
+                                <img intrinsicsize="274 x 183" src="{{ $property['images'][1]['media_url'] ?? '' }}" class="img-fluid property-list-img-small" alt="{{ $property['Address']['display_address'] ?? '' }}">
+                            </a>
+                            <a href="{{ $property['permalink'] }}">
+                                <img intrinsicsize="274 x 183" src="{{ $property['images'][2]['media_url'] ?? '' }}" class="img-fluid property-list-img-small" alt="{{ $property['Address']['display_address'] ?? '' }}">
+                            </a>
+                        </div>
+                    </div>
+                @else
+                <img src="/wp-content/uploads/2022/06/Screenshot-2023-02-14-at-17.55.37.png" style="object-fit: contain;" alt="Awaiting Images for {{ $property['Address']['display_address'] }}">
+                @endif
+                
+                <div class="features-banner">
+                    <div class="feature-icon">
+                        <p>
+                            <svg enable-background="new 0 0 9 8" viewBox="0 0 9 8" xmlns="http://www.w3.org/2000/svg" class="icon__photo"><path d="M2.3,0.4h-1c-0.1,0-0.2,0.1-0.2,0.2v0.5L1,1.2c-0.1,0-0.1,0-0.2,0.1C0.3,1.3,0,1.7,0,2.2v4.8c0,0.5,0.4,0.9,0.9,0.9h7.1C8.6,7.9,9,7.5,9,6.9V2.2c0-0.5-0.4-0.9-0.9-0.9H7.2L7,0.5C7,0.3,6.8,0.1,6.5,0.1H3.9c-0.2,0-0.4,0.2-0.5,0.4L3.2,1.2l-0.3,0c-0.1,0-0.2,0-0.3-0.1l-0.1,0V0.6C2.5,0.5,2.4,0.4,2.3,0.4z M5.1,2.1c1.3,0,2.4,1.1,2.4,2.4S6.4,6.9,5.1,6.9S2.7,5.8,2.7,4.5S3.8,2.1,5.1,2.1z"></path></svg>
+                            {{ count($property['images'] ?? []) }}
+                        </p>
+                    </div>
+                    @if(!empty($property['floor_plans']))
+                    <div class="feature-icon">
+                        <p>
+                            <svg enable-background="new 0 0 9 9" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg" class="icon__floorplan"><path d="M0,9h2.6V8.1H0.9V6.8h1.8V6H0.9V0.9h3.2v5.8h0.9V0.9h3.2v3.2H6.3v2.7h0.9V4.9h1v3.2H4.2V9H9V0H0L0,9z"></path></svg>
+                        </p>
+                    </div>
+                    @endif
+                    @if(!empty($property['virtual_tours']))
+                    <div class="feature-icon">
+                        <p>
+                            <svg enable-background="new 0 0 9 6" viewBox="0 0 9 6" xmlns="http://www.w3.org/2000/svg" class="icon__video"><path d="M8.4,0.5L5.8,2.2V0.7c0-0.3-0.3-0.6-0.6-0.6H0.6C0.3,0.1,0,0.4,0,0.7v4.6c0,0.3,0.3,0.6,0.6,0.6h4.6c0.3,0,0.6-0.3,0.6-0.6V3.8l2.6,1.7C8.6,5.7,9,5.5,9,5.2V0.9C9,0.6,8.7,0.4,8.4,0.5z"></path></svg>
+                        </p>
+                    </div>
+                     @endif
                 </div>
-                <div class="div2"> 
-                    <img intrinsicsize="274 x 183" src="{{ $property['images'][1]['optimised_image_url'] ?? '' }}/274" class="img-fluid property-list-img-small" alt="{{ $property['Address']['display_address'] ?? '' }}">
-                    <img intrinsicsize="274 x 183" src="{{ $property['images'][2]['optimised_image_url'] ?? '' }}/274" class="img-fluid property-list-img-small" alt="{{ $property['Address']['display_address'] ?? '' }}">
+                @if ($property['availability'] == 'Available')
+                 <!-- EMPTY VALUE -->
+                  @else
+                <div class="availability">
+                    <p>@if ($property['availability'] == 'SSTC') Sold STC @else {{ $property['availability'] }} @endif</p>
                 </div>
-            </a>
-            @else
-            <img src="/wp-content/uploads/2024/02/awaiting.jpg" style="object-fit: contain;" alt="Awaiting Images for {{ $property['Address']['display_address'] }}">
-            @endif
+                @endif 
                 
                 <div class="features-banner">
                     <div class="feature-icon">

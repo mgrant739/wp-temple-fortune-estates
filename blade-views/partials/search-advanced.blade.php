@@ -39,7 +39,7 @@
                             type="text"
                             name="address_keyword"
                             id="address-keyword"
-                            placeholder="Town, street or postcode"
+                            placeholder="Town / Postcode"
                         >
                     </div>
 
@@ -246,7 +246,7 @@
                                     type="text"
                                     name="address_keyword"
                                     id="address-keyword-sales"
-                                    placeholder="Town, street or postcode"
+                                    placeholder="Town / Postcode"
                                 >
                             </div>
 
@@ -388,7 +388,7 @@
                                     type="text"
                                     name="address_keyword"
                                     id="address-keyword-lettings"
-                                    placeholder="Town, street or postcode"
+                                    placeholder="Town / Postcode"
                                 >
                             </div>
 

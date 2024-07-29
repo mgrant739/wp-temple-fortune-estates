@@ -40,31 +40,11 @@
                 <div class="row">
                     <div class="col-sm-12 col-lg-10 fields-col">
                         <div class="row">
-                            <div class="col-12 col-lg-3">
-                            @include('components/google-places', ['parent_form_id' => 'search-autocomplete-form-sales'])
-                                {{--
+                        <div class="col-12 col-lg-5 ">
                                 <label for="address_keyword-sales" >Location</label>
-                                <input data-component="FormItem" type="text" name="address_keyword" id="address_keyword-sales" class="form-control" placeholder="Town, street and postcode">
-                                --}}
+                                <input data-component="FormItem" type="text" name="address_keyword" id="address_keyword-sales" class="form-control" placeholder="Town / Postcode">
                             </div>
-                            <div class="advanced__search-selects col-lg-3">
-                        <label for="radius-sales">Radius</label>
-                            
-                                <select
-                                    data-component="FormItem"
-                                    name="radius"
-                                    class="form-control"
-                                    id="radius-sales"
-                                >
-                                    <option value="">Choose radius</option>
-                                    <option value="1">1 Mile</option>
-                                    <option value="5">5 Miles</option>
-                                    <option value="10">10 Miles</option>
-                                    <option value="20">20 Miles</option>
-                                </select>
-                        
-                        </div>
-                            <div class="col-sm-12 col-lg-3 select-col">
+                            <div class="col-sm-12 col-lg select-col">
                                 <label for="maxprice-sales" >Maximum Price</label>
                                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 407.437 407.437" style="enable-background:new 0 0 407.437 407.437;" xml:space="preserve"> <polygon points="386.258,91.567 203.718,273.512 21.179,91.567 0,112.815 203.718,315.87 407.437,112.815 "/> </svg>
                                 <select data-component="FormItem" name="maxprice" id="maxprice-sales" class="form-control">
@@ -72,7 +52,7 @@
                                     @include('partials/search-prices', ['sales' => 'true'])
                                 </select>
                             </div>
-                            <div class="col-sm-12 col-lg-3 select-col">
+                            <div class="col-sm-12 col-lg select-col">
                                 <label for="bedrooms-sales" >Minimum Beds</label>
                                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 407.437 407.437" style="enable-background:new 0 0 407.437 407.437;" xml:space="preserve"> <polygon points="386.258,91.567 203.718,273.512 21.179,91.567 0,112.815 203.718,315.87 407.437,112.815 "/> </svg>
                                 <select data-component="FormItem" name="min_bedrooms" id="bedrooms-sales" class="form-control">
@@ -105,30 +85,11 @@
                 <div class="row">
                     <div class="col-lg-10 fields-col">
                         <div class="row">
-                            <div class="col-12 col-lg-3 ">
+                            <div class="col-12 col-lg-5 ">
                                 <label for="address_keyword-lettings" >Location</label>
-                                <input data-component="FormItem" type="text" name="address_keyword" id="address_keyword-lettings" class="form-control" placeholder="Town, street and postcode">
+                                <input data-component="FormItem" type="text" name="address_keyword" id="address_keyword-lettings" class="form-control" placeholder="Town / Postcode">
                             </div>
-
-                            <div class="advanced__search-selects col-lg-3">
-                        <label for="radius-sales">Radius</label>
-                            
-                                <select
-                                    data-component="FormItem"
-                                    name="radius"
-                                    class="form-control"
-                                    id="radius-sales"
-                                >
-                                    <option value="">Choose radius</option>
-                                    <option value="1">1 Mile</option>
-                                    <option value="5">5 Miles</option>
-                                    <option value="10">10 Miles</option>
-                                    <option value="20">20 Miles</option>
-                                </select>
-                        
-                        </div>
-
-                            <div class="col-sm-12 col-lg-3 select-col">
+                            <div class="col-sm-12 col-lg select-col">
                                 <label for="maxprice-lettings" >Maximum Price</label>
                                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 407.437 407.437" style="enable-background:new 0 0 407.437 407.437;" xml:space="preserve"> <polygon points="386.258,91.567 203.718,273.512 21.179,91.567 0,112.815 203.718,315.87 407.437,112.815 "/> </svg>
                                 <select data-component="FormItem" name="maxprice" id="maxprice-lettings" class="form-control">
@@ -136,7 +97,7 @@
                                     @include('partials/search-prices', ['lettings' => 'true'])
                                 </select>
                             </div>
-                            <div class="col-sm-12 col-lg-3 select-col">
+                            <div class="col-sm-12 col-lg select-col">
                                 <label for="bedrooms-lettings" >Minimum Beds</label>
                                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 407.437 407.437" style="enable-background:new 0 0 407.437 407.437;" xml:space="preserve"> <polygon points="386.258,91.567 203.718,273.512 21.179,91.567 0,112.815 203.718,315.87 407.437,112.815 "/> </svg>
                                 <select data-component="FormItem" name="min_bedrooms" id="bedrooms-lettings" class="form-control">
