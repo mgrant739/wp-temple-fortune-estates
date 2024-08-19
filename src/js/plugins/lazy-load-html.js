@@ -45,6 +45,9 @@
         );
     }
 
+
+
+
     // Debugging code will add borders around your elements
     function updateElementStatus() {
         $(".lazy-load-html").each(function () {

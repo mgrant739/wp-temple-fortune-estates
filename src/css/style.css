@@ -1415,7 +1415,7 @@ blockquote:last-child {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  width: 140px;
+  padding: 10px;
   height: 40px;
   border-radius: 0;
   background-color: var(--e-global-color-accent);
@@ -1726,7 +1726,7 @@ blockquote:last-child {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  width: 140px;
+  padding: 10px;
   height: 40px;
   border-radius: 0;
   background-color: var(--e-global-color-accent);
@@ -1918,7 +1918,7 @@ blockquote:last-child {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  width: 131px;
+  padding: 10px;
   height: 46px;
   border-radius: 4px;
   background-color: var(--e-global-color-primary);
@@ -2179,7 +2179,7 @@ blockquote:last-child {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  width: 140px;
+  padding: 10px;
   height: 40px;
   border-radius: 0;
   background-color: var(--e-global-color-accent);
