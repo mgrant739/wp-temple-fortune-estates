@@ -228,7 +228,7 @@
         <div class="col-sm-12 col-lg-5">
             <div class="enquiry-box">
                 <h3>To discuss this property call our friendly team</h3>
-                <h2><a href="tel:" target="_blank" rel="noopener noreferrer">01624 61 99 66</a></h2>
+                <h2><a href="tel:02089520908" target="_blank" rel="noopener noreferrer">020 8952 0908</a></h2>
                 <a class="viewing-request-btn" href="/contact/arrange-viewing/?office_id={{ $office_id }}&advert_address={{ $advert_address }}&advert_summary={{ $advert_summary }}&advert_image={{ $advert_image }}&advert_postcode{{ $advert_postcode }}=&advert_url={{ $advert_url }}&type=@if($property['instruction_type'] == 'Sale') sale @elseif($property['instruction_type'] == 'Letting') let @endif">or <span>Book a viewing</span></a>
                 <div class="enquiry-box__cta">
                     @if(!empty($property['brochures']))
