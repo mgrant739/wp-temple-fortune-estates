@@ -1,8 +1,7 @@
 <a href="{{ $property['permalink'] }}" target="_blank" 
 style="height: 200px; margin-bottom: 30px; background: #F2F2F2; border: solid 1px #CCC; display: block;">
-    @if(is_array($property['images'] ?? '') && count($property['images']) > 0)
-    <img style="max-width: 200px;" src="{{ $property['images'][0]['optimised_image_url'] ?? '' }}/268" alt="">
-    @endif
+    <img style="max-width: 200px;" src="{{ $property['images'][0]['media_url'] ?? '' }}" alt="">
+    
         <div class="property-map__meta">
         <div class="property-map__type">
             <h1>
